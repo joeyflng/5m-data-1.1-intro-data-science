@@ -15,6 +15,15 @@ def fizz_buzz(number):
     >>> fizz_buzz(15)
     'FizzBuzz'
     """
+    if isinstance(number, int) and number >= 0:
+        if number % 3 == 0 and number % 5 == 0:
+            return "FizzBuzz"
+        elif number % 3 == 0:
+            return "Fizz"
+        elif number % 5 == 0:
+            return "Buzz"
+        else:
+            return number
     return
 
 
@@ -30,6 +39,8 @@ def sum_of_squares(numbers):
     >>> sum_of_squares([2, 4, 6])
     56
     """
+    if isinstance(numbers, list) and all(isinstance(n, (int, float)) for n in numbers):
+        return sum(n ** 2 for n in numbers)
     return
 
 
@@ -45,6 +56,11 @@ def count_vowels(string):
     >>> count_vowels("aeiou")
     5
     """
+    if isinstance(string, str): 
+        vowels = "aeiou"
+        string = string.lower()
+        # Count vowels in the string"
+        return sum(1 for char in string if char in vowels)
     return
 
 
@@ -60,8 +76,23 @@ def count_repeats(string):
     >>> count_repeats("aeiou")
     0
     """
+    if isinstance(string, str):
+       repeated_chars = 0
+       checked_chars = []
+
+       for char in string:
+            # first occurance of a character
+            if char not in checked_chars:
+                count  = string.count(char)
+                if count > 1:
+                    repeated_chars+=count
+                checked_chars.append(char)
+       return repeated_chars
     return
 
+        
+       
+    
 
 if __name__ == "__main__":
     import doctest
